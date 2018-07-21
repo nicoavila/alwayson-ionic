@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the ListaTicketsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { ApiProvider } from '../../providers/api/api';
+import { LoadingController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -15,11 +10,36 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ListaTicketsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public tickets = [];
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public api: ApiProvider,
+    public loading: LoadingController
+  ) {
+    let cargando = this.loading.create({
+      content: 'Cargando datos...'
+    });
+    cargando.present();
+    this.api.getTickets().on('value', (snapshot) => {
+      this.tickets = [];
+      snapshot.forEach((row:any) => {
+        let id = row.key;
+        let data = row.val();
+
+        this.tickets.push({
+          id: id,
+          nombre: data.nombre,
+          estado: data.estado,
+          prioridad: data.prioridad
+        })
+      });
+      cargando.dismiss();
+    });
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ListaTicketsPage');
   }
 
   public detalleTicket() {
