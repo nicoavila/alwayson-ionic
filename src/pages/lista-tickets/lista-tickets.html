@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Lista de Tickets</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item *ngFor="let ticket of tickets"(click)="detalleTicket()">
+      <ion-badge color="danger">{{ticket.estado}}</ion-badge> {{ticket.nombre}}
+    </ion-item>
+  </ion-list>
+</ion-content>
