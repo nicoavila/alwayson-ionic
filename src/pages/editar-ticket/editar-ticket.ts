@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the EditarTicketPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { ApiProvider } from '../../providers/api/api';
 
 @IonicPage()
 @Component({
@@ -15,11 +9,27 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class EditarTicketPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public prioridad;
+  public nombre;
+  public image;
+  public datos;
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public api: ApiProvider
+  ) {
+    let id = this.navParams.get('id');
+    this.api.getTicket(id).once('value').then((datos:any) => {
+      let datos_procesados = datos.val();
+      this.datos = datos_procesados;
+
+      this.nombre = datos_procesados.nombre;
+      this.prioridad = datos_procesados.prioridad;
+    });
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad EditarTicketPage');
-  }
+  ionViewDidLoad() {}
+
 
 }

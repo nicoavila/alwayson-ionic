@@ -26,10 +26,24 @@
       <button ion-button full><ion-icon name="camera" (click)="tomarFoto()"></ion-icon> Tomar Foto</button>
     </ion-item>
   </ion-list>
+
   <ion-grid>
     <ion-row>
-      <ion-col><button ion-button full large color="aogreen">Editar</button></ion-col>
-      <ion-col><button ion-button full large color="danger"><ion-icon name="trash"></ion-icon></button></ion-col>
+      <ion-col>
+        <button ion-button full large color="aogreen">
+          <ion-icon name="create"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button full large color="danger">
+          <ion-icon name="trash"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button full large color="secondary">
+          <ion-icon name="checkmark-circle-outline"></ion-icon>
+        </button>
+      </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>

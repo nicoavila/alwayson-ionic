@@ -16,7 +16,7 @@ export class NuevoTicketPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public apiProvider: ApiProvider
+    public api: ApiProvider
   ) {
   }
 
@@ -30,7 +30,7 @@ export class NuevoTicketPage {
       nombre: this.nombre,
       prioridad: this.prioridad
     }
-    this.apiProvider.addTicket(nuevoDato, (resultado) => {
+    this.api.addTicket(nuevoDato, (resultado) => {
       this.navCtrl.pop();
     });
   }
