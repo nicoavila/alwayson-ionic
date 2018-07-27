@@ -6,7 +6,7 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item *ngFor="let ticket of tickets">
+    <ion-item *ngFor="let ticket of tickets" (click)="detalleTicket(ticket.id)">
       <ion-badge *ngIf="ticket.prioridad == 1" color="alta">Alta</ion-badge>
       <ion-badge *ngIf="ticket.prioridad == 2" color="media">Media</ion-badge>
       <ion-badge *ngIf="ticket.prioridad == 3" color="baja">Baja</ion-badge>
@@ -14,4 +14,8 @@
       {{ticket.nombre}}
     </ion-item>
   </ion-list>
+
+  <ion-fab right bottom>
+    <button ion-fab color="aogreen" (click)="addTicket()"><ion-icon name="add-circle"></ion-icon></button>
+  </ion-fab>
 </ion-content>

@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Nuevo Ticket</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Nombre del ticket</ion-label>
+      <ion-input type="text" [(ngModel)]="nombre"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Prioridad</ion-label>
+      <ion-select [(ngModel)]="prioridad">
+        <ion-option value="1">Baja</ion-option>
+        <ion-option value="2">Media</ion-option>
+        <ion-option value="3">Alta</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <div class="foto_container"></div>
+      <button ion-button full><ion-icon name="camera" (click)="tomarFoto()"></ion-icon> Tomar Foto</button>
+    </ion-item>
+  </ion-list>
+  <button ion-button full large color="aogreen" (click)="nuevoTicket()">Nuevo Ticket</button>
+</ion-content>

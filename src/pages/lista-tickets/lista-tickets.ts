@@ -42,7 +42,15 @@ export class ListaTicketsPage {
   ionViewDidLoad() {
   }
 
-  public detalleTicket() {
-    this.navCtrl.push('DetalleTicketPage');
+  //Ve el detalle de un ticket (edición)
+  public detalleTicket(id) {
+    this.navCtrl.push('EditarTicketPage', {
+      id: id
+    });
+  }
+
+  //Añade un nuevo ticket
+  public addTicket() {
+    this.navCtrl.push('NuevoTicketPage');
   }
 }

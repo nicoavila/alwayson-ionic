@@ -10,4 +10,8 @@ export class ApiProvider {
   public getTickets() {
     return firebase.database().ref('/tickets');
   }
+
+  public addTicket(data, callback) {
+    return firebase.database().ref('/tickets/').push(data, callback);
+  }
 }
