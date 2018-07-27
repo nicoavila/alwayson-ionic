@@ -28,12 +28,15 @@ export class ListaTicketsPage {
         let id = row.key;
         let data = row.val();
 
-        this.tickets.push({
-          id: id,
-          nombre: data.nombre,
-          estado: data.estado,
-          prioridad: data.prioridad
-        })
+        //Comprobamos si el ticket está resuelto o no
+        if (data.estado == 0) {
+          this.tickets.push({
+            id: id,
+            nombre: data.nombre,
+            estado: data.estado,
+            prioridad: data.prioridad
+          });
+        }
       });
       cargando.dismiss();
     });

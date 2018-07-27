@@ -20,4 +20,22 @@ export class ApiProvider {
   public addTicket(data, callback) {
     return firebase.database().ref('/tickets/').push(data, callback);
   }
+
+  //Editar ticket
+  public editTicket(id, data, callback) {
+    return firebase.database().ref('/tickets/' + id).set(data, callback);
+  }
+
+  //Eliminar Ticket
+  public eliminarTicket(id, callback) {
+    return firebase.database().ref('/tickets/' + id).remove(callback);
+  }
+
+  //Resolver Tickets
+  public resolverTicket(id, callback) {
+    let dato = {
+      estado: 1
+    }
+    return firebase.database().ref('/tickets/' + id).update(dato, callback);
+  }
 }

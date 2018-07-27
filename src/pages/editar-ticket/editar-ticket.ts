@@ -12,7 +12,7 @@ export class EditarTicketPage {
   public prioridad;
   public nombre;
   public image;
-  public datos;
+  public id;
 
   constructor(
     public navCtrl: NavController,
@@ -22,7 +22,7 @@ export class EditarTicketPage {
     let id = this.navParams.get('id');
     this.api.getTicket(id).once('value').then((datos:any) => {
       let datos_procesados = datos.val();
-      this.datos = datos_procesados;
+      this.id = datos.key;
 
       this.nombre = datos_procesados.nombre;
       this.prioridad = datos_procesados.prioridad;
@@ -31,5 +31,26 @@ export class EditarTicketPage {
 
   ionViewDidLoad() {}
 
+  public editarTicket() {
+    let datos = {
+      estado: 0,
+      nombre: this.nombre,
+      prioridad: this.prioridad
+    }
+    this.api.editTicket(this.id, datos, () => {
+      this.navCtrl.pop();
+    });
+  }
 
+  public eliminarTicket() {
+    this.api.eliminarTicket(this.id, () => {
+      this.navCtrl.pop();
+    });
+  }
+
+  public resolverTicket() {
+    this.api.resolverTicket(this.id, () => {
+      this.navCtrl.pop();
+    });
+  }
 }

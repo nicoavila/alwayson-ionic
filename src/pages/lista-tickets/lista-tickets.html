@@ -13,6 +13,8 @@
 
       {{ticket.nombre}}
     </ion-item>
+
+    <ion-item *ngIf="tickets.length == 0">No existen tickets pendientes</ion-item>
   </ion-list>
 
   <ion-fab right bottom>
