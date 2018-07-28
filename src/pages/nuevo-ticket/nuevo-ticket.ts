@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { LoadingController } from 'ionic-angular';
+import { ToastController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -20,7 +21,8 @@ export class NuevoTicketPage {
     public navParams: NavParams,
     public api: ApiProvider,
     public camera: Camera,
-    public loading: LoadingController
+    public loading: LoadingController,
+    public toast: ToastController
   ) {
   }
 
@@ -65,7 +67,12 @@ export class NuevoTicketPage {
       let progreso = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
       loading.setContent('Subiendo (' + progreso + '%)');
     }, (error) => {
-
+      loading.dismiss();
+      let toast = this.toast.create({
+        message: 'Error al subir el archivo',
+        duration: 3000
+      });
+      toast.present();
     }, () => {
       //Cuando termina obtiene la URL pública del archivo, para asi guardar esa URL en el objeto que se va a subir a Realtime Database
       upload.snapshot.ref.getDownloadURL().then((url) => {
