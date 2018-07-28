@@ -11,7 +11,7 @@ export class EditarTicketPage {
 
   public prioridad;
   public nombre;
-  public image;
+  public image = '';
   public id;
 
   constructor(
@@ -26,11 +26,13 @@ export class EditarTicketPage {
 
       this.nombre = datos_procesados.nombre;
       this.prioridad = datos_procesados.prioridad;
+      this.image = datos_procesados.image;
     });
   }
 
   ionViewDidLoad() {}
 
+  //Edita la información de un ticket
   public editarTicket() {
     let datos = {
       estado: 0,
@@ -42,12 +44,14 @@ export class EditarTicketPage {
     });
   }
 
+  //Elimina un ticket
   public eliminarTicket() {
     this.api.eliminarTicket(this.id, () => {
       this.navCtrl.pop();
     });
   }
 
+  //Marca un ticket como resuelto
   public resolverTicket() {
     this.api.resolverTicket(this.id, () => {
       this.navCtrl.pop();
